@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../styles/App.css';
-import {BrowserRouter as Router, Link, NavLink, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Link, NavLink, Redirect, Route, Switch} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./Home";
 import AboutUs from "./AboutUs";
@@ -19,11 +19,15 @@ class App extends Component {
             <NavLink className='nav-item' activeClassName='activeLink'  to={'/about-us'}>AboutUs</NavLink>
             <NavLink className='nav-item' activeClassName='activeLink'  to={'/my-profile'}>MyProfile</NavLink>
           </nav>
-          <Route exact path='/' component={Home} />
-          <Route  path='/about-us' component={AboutUs} />
-          <Route path='/my-profile' component={MyProfile} />
-          <Route exact path='/products' component={Products} />
-          <Route path='/products/:id' component={ProductItem} />
+          <Switch>
+            <Redirect from='/goods' to='/products' />
+            <Route exact path='/' component={Home} />
+            <Route  path='/about-us' component={AboutUs} />
+            <Route path='/my-profile' component={MyProfile} />
+            <Route exact path='/products' component={Products} />
+            <Route path='/products/:id' component={ProductItem} />
+            <Route path='*' component={Home} />
+          </Switch>
         </Router>
       </div>
     );
