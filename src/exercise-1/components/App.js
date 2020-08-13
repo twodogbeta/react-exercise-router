@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./Home";
 import AboutUs from "./AboutUs";
 import MyProfile from "./MyProfile";
+import Products from "./Products";
+import ProductItem from "./ProductItem";
 
 class App extends Component {
   render() {
@@ -12,13 +14,16 @@ class App extends Component {
       <div className="app">
         <Router>
           <nav className='navbar navbar-light' style={{background: '#e3f2fd', textAlign: 'left'}}>
-            <NavLink className='nav-item' activeClassName='activeLink' component={Home} to={'/'}>Home</NavLink>
-            <NavLink className='nav-item' activeClassName='activeLink' component={Home} to={'/about-us'}>AboutUs</NavLink>
-            <NavLink className='nav-item' activeClassName='activeLink' component={Home} to={'/my-profile'}>MyProfile</NavLink>
+            <NavLink exact className='nav-item' activeClassName='activeLink'  to={'/'}>Home</NavLink>
+            <NavLink className='nav-item' activeClassName='activeLink'  to={'/products'}>Products</NavLink>
+            <NavLink className='nav-item' activeClassName='activeLink'  to={'/about-us'}>AboutUs</NavLink>
+            <NavLink className='nav-item' activeClassName='activeLink'  to={'/my-profile'}>MyProfile</NavLink>
           </nav>
           <Route exact path='/' component={Home} />
           <Route  path='/about-us' component={AboutUs} />
           <Route path='/my-profile' component={MyProfile} />
+          <Route exact path='/products' component={Products} />
+          <Route path='/products/:id' component={ProductItem} />
         </Router>
       </div>
     );
