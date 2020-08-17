@@ -13,20 +13,11 @@ class App extends Component {
     return (
       <div className="app">
         <Router>
-          <nav className='navbar navbar-light' style={{background: '#e3f2fd', textAlign: 'left'}}>
-            <NavLink exact className='nav-item' activeClassName='activeLink'  to={'/'}>Home</NavLink>
-            <NavLink className='nav-item' activeClassName='activeLink'  to={'/products'}>Products</NavLink>
-            <NavLink className='nav-item' activeClassName='activeLink'  to={'/about-us'}>AboutUs</NavLink>
-            <NavLink className='nav-item' activeClassName='activeLink'  to={'/my-profile'}>MyProfile</NavLink>
-          </nav>
           <Switch>
-            <Redirect from='/goods' to='/products' />
             <Route exact path='/' component={Home} />
-            <Route  path='/about-us' component={AboutUs} />
-            <Route path='/my-profile' component={MyProfile} />
-            <Route exact path='/products' component={Products} />
-            <Route path='/products/:id' component={ProductItem} />
-            <Route path='*' component={Home} />
+            <Route path='/:user(\d+)' component={User} />
+            <Route path='/about' component={User} />
+            <Route component={NotMatch} />
           </Switch>
         </Router>
       </div>
